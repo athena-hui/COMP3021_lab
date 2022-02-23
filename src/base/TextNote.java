@@ -1,7 +1,8 @@
 package base;
 
 public class TextNote extends Note{
-	String content = "";
+	private String content = "";
+	
 	public TextNote(String title){
 		super(title);
 	}
