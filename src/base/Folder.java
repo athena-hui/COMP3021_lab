@@ -4,9 +4,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Folder implements Comparable<Folder>{
-	public ArrayList<Note> notes;
-	public String name;
+public class Folder implements Comparable<Folder>, java.io.Serializable{
+//LAB 4-Task 1
+//public class Folder implements Comparable<Folder>{
+	//public ArrayList<Note> notes;
+	//public String name;
+	private static final long serialVersionUID = 1L;//LAB 4-Task 1
+	private ArrayList<Note> notes;
+	private String name;
 	
 	public Folder(String name) {
 		this.name = name;

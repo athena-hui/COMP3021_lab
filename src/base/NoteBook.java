@@ -1,11 +1,19 @@
 package base;
+import java.io.FileInputStream;//LAB 4-Task 2
+import java.io.FileOutputStream;//LAB 4-Task 1
+import java.io.ObjectInputStream;//LAB 4-Task 2
+import java.io.ObjectOutputStream;//LAB 4-Task 1
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NoteBook {
-	public ArrayList<Folder> folders;
-	
+//LAB 4-Task 1
+class NoteBook implements java.io.Serializable {
+//public classNoteBook {
+	private static final long serialVersionUID = 1L;//LAB 4-Task 1
+	private ArrayList<Folder> folders;
+	//public ArrayList<Folder> folders;
+
 	public NoteBook() {
 		folders = new ArrayList<Folder>();
 	}
@@ -64,5 +72,39 @@ public class NoteBook {
 		TextNote note = new TextNote(title, content);
 		return insertNote(folderName, note);
 	}
+	
+	//LAB 4-task 1
+	public boolean save(String file){
+		try {
+			FileOutputStream file_output = new FileOutputStream(file);
+			ObjectOutputStream object_output = new ObjectOutputStream(file_output);
+			object_output.writeObject(this);
+			
+			object_output.close();
+			file_output.close();
+		} catch (Exception except) {
+			except.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	//LAB 4-task 2
+	public NoteBook(String file) {
+		FileInputStream file_input = null;
+		ObjectInputStream object_input = null;
+		try {
+			file_input = new FileInputStream(file);
+			object_input = new ObjectInputStream(file_input);
+			NoteBook notebook_read = (NoteBook) object_input.readObject();
+			this.folders = notebook_read.folders;
+			
+			object_input.close();
+			file_input.close();
+		} catch (Exception except) {
+			except.printStackTrace();
+		}
+	}
+
 	
 }
