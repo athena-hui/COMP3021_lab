@@ -66,7 +66,7 @@ public class TestLab6 {
 		output("Task4");
 		int[] arrInt = {100, 200, 300, 400, 500, 600, 500, 400, 300, 700, 200};
 		ArrayList<Account> accounts = new ArrayList<>();
-
+		
 		int id = 0;
 		for(Integer balance : arrInt) accounts.add(new Account(id++, balance));
 		int maxID = Account.getMaxAccountID(accounts);

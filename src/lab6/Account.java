@@ -38,7 +38,7 @@ public class Account {
 		// TODO: Task4 
 		// replace the null with a lambda expression
 		Account maxOne = accounts.stream().reduce(new Account(0, -100), (a1,a2) -> a1.balance>=a2.balance? a1:a2);
-
+		
 		return maxOne.id;
 	}
 
