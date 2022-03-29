@@ -36,9 +36,7 @@ public class TestLab6 {
 	public static void test2() {
 		output("Task2");
 		Account a1 = new Account(1, 500);
-		//boolean b1 = Account.checkBound.test(a1);
 		Account a2 = new Account(2, -100);
-		//boolean b2 = Account.checkBound.test(a2);
 		Account a3 = new Account(3, 12000);
 		boolean b1 = Account.checkBound.test(a1);
 		boolean b2 = Account.checkBound.test(a2);
