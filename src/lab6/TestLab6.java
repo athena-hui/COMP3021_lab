@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Consumer;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
 public class TestLab6 {
 	public static void main(String args[]) {
 		test1();
