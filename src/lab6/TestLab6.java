@@ -77,7 +77,6 @@ public class TestLab6 {
 			output("Fail");
 		}
 
-
 	}
 
 }
