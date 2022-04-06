@@ -78,23 +78,43 @@ public class Folder implements Comparable<Folder>, java.io.Serializable{
 	}
 	
 	public List<Note> searchNotes(String keywords){
-		String[] keys = keywords.split(" ", 0);
 		List<Note> result = new ArrayList<Note>();
-		for(Note n : notes) {
-			int add = 0;
-			if ((n.getTitle().matches("(?i).*"+keys[0]+ ".*") || n.getTitle().matches("(?i).*"+keys[2]+ ".*"))
-				&& (n.getTitle().matches("(?i).*"+keys[3]+ ".*") || n.getTitle().matches("(?i).*"+keys[5]+ ".*")))
-			{
-				result.add(n);
-				add = 1;
-			}
-			if ((n instanceof TextNote) && (add == 0)){
-				String content = ((TextNote)n).getContent();
-				if ((content.matches("(?i).*"+keys[0]+ ".*") || content.matches("(?i).*"+keys[2]+ ".*"))
-					&& (content.matches("(?i).*"+keys[3]+ ".*") || content.matches("(?i).*"+keys[5]+ ".*"))) {
+		String[] keys = keywords.split(" ", 0);
+		if (keywords.toLowerCase().contains("or")) {
+			for(Note n : notes) {
+				int add = 0;
+				if ((n.getTitle().matches("(?i).*"+keys[0]+ ".*") || n.getTitle().matches("(?i).*"+keys[2]+ ".*"))
+					&& (n.getTitle().matches("(?i).*"+keys[3]+ ".*") || n.getTitle().matches("(?i).*"+keys[5]+ ".*")))
+				{
 					result.add(n);
+					add = 1;
+				}
+				if ((n instanceof TextNote) && (add == 0)){
+					String content = ((TextNote)n).getContent();
+					if ((content.matches("(?i).*"+keys[0]+ ".*") || content.matches("(?i).*"+keys[2]+ ".*"))
+						&& (content.matches("(?i).*"+keys[3]+ ".*") || content.matches("(?i).*"+keys[5]+ ".*"))) {
+						result.add(n);
+					}
+				}
+				
+			}
+		}else { //Lab7- Task 5
+			for(Note n : notes) {
+				for (String key: keys) {
+					if (n.getTitle().contains(key.toLowerCase())) {
+						result.add(n);
+						break;
+					}
+					if ((n instanceof TextNote)) {
+						String content = ((TextNote)n).getContent().toLowerCase();
+						if (content.contains(key.toLowerCase())) {
+							result.add(n);
+							break;
+						}
+					}
 				}
 			}
+			
 		}
 		return result;
 	}
